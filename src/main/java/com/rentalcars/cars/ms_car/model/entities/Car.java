@@ -4,7 +4,6 @@ import com.rentalcars.cars.ms_car.enums.BrandEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serial;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -15,8 +14,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class Car {
-    @Version
-    private Long version;
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

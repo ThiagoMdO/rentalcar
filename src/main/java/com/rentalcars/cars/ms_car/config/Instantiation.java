@@ -22,7 +22,7 @@ public class Instantiation implements CommandLineRunner {
 
         carRepository.deleteAll();
 
-        Car car1 = Car.builder()
+        var car1 = Car.builder()
 //                .id(UUID.fromString("7a1b7eb6-2d43-4a2e-9013-500cbc9d4d38"))
 //                .id(UUID.randomUUID())
                 .model("Uno")
@@ -30,14 +30,19 @@ public class Instantiation implements CommandLineRunner {
                 .color("Gray")
                 .fabricationYear(LocalDate.of(2004, 1, 31))
                 .build();
-        Car car2 = Car.builder()
-//                .id(UUID.fromString("7a1b7eb6-2d43-4a2e-9013-500cbc9d4d38"))
-//                .id(UUID.randomUUID())
+        var car2 = Car.builder()
                 .model("Palio")
                 .brandEnum(BrandEnum.FORD)
                 .color("White")
                 .fabricationYear(LocalDate.of(2009, 1, 31))
                 .build();
-        carRepository.saveAll(Arrays.asList(car1, car2));
+        var car3 = Car.builder()
+                .model("iX")
+                .brandEnum(BrandEnum.BMW)
+                .color("gray")
+                .fabricationYear(LocalDate.of(2025, 1, 31))
+                .build();
+
+        carRepository.saveAll(Arrays.asList(car1, car2, car3));
     }
 }

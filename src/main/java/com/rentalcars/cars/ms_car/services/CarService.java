@@ -1,5 +1,6 @@
 package com.rentalcars.cars.ms_car.services;
 
+import com.rentalcars.cars.ms_car.enums.BrandEnum;
 import com.rentalcars.cars.ms_car.exceptions.customException.CarNotFoundException;
 import com.rentalcars.cars.ms_car.model.dto.out.CarResponseDTO;
 import com.rentalcars.cars.ms_car.repositories.CarRepository;
@@ -30,4 +31,10 @@ public class CarService {
                 .orElseThrow(CarNotFoundException::new);
     }
 
+    public List<CarResponseDTO> search(String model, String color, BrandEnum brandEnum, Integer startYear, Integer endYear) {
+        return carRepository.searchCars(model, color, brandEnum, startYear, endYear)
+                .stream()
+                .map(CarResponseDTO::createResponseDTO)
+                .toList();
+    }
 }
