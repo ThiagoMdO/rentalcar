@@ -6,6 +6,7 @@ import com.rentalcars.cars.ms_car.services.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,5 +24,12 @@ public class CarControllerImpl implements CarController {
     public ResponseEntity<List<CarResponseDTO>> getAll() {
         var list = carService.getAllCars();
         return ResponseEntity.ok(list);
+    }
+
+    @Override
+    @GetMapping("/{id}")
+    public ResponseEntity<CarResponseDTO> getById(@PathVariable String id) {
+        var car = carService.getACarById(id);
+        return ResponseEntity.ok(car);
     }
 }

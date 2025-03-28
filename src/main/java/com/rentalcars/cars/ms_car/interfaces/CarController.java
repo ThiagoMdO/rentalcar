@@ -8,4 +8,6 @@ import java.util.List;
 public interface CarController {
 
     ResponseEntity<List<CarResponseDTO>> getAll();
+
+    ResponseEntity<CarResponseDTO> getById(String id);
 }
