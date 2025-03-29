@@ -6,17 +6,10 @@
     import org.springframework.data.jpa.repository.Query;
     import org.springframework.data.repository.query.Param;
 
-    import java.time.LocalDate;
     import java.util.List;
     import java.util.UUID;
 
     public interface CarRepository extends JpaRepository<Car, UUID> {
-
-        List<Car> findByModelContainingIgnoreCase(String model);
-
-        List<Car> findByColorIgnoreCase(String color);
-
-        List<Car> findByBrandEnum(BrandEnum brandEnum);
 
         @Query("SELECT c " +
                 "FROM Car c " +

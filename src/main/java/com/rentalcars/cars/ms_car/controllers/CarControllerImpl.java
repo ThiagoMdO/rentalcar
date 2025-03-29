@@ -3,6 +3,7 @@ package com.rentalcars.cars.ms_car.controllers;
 import com.rentalcars.cars.ms_car.enums.BrandEnum;
 import com.rentalcars.cars.ms_car.interfaces.CarController;
 import com.rentalcars.cars.ms_car.model.dto.in.CarRequestDTO;
+import com.rentalcars.cars.ms_car.model.dto.in.CarRequestUpdateDTO;
 import com.rentalcars.cars.ms_car.model.dto.out.CarResponseDTO;
 import com.rentalcars.cars.ms_car.services.CarService;
 import jakarta.validation.Valid;
@@ -55,5 +56,13 @@ public class CarControllerImpl implements CarController {
         var carCreated = carService.registerCar(carRequestDTO);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(carCreated);
+    }
+
+    @Override
+    @PutMapping("/{id}")
+    public ResponseEntity<CarResponseDTO> update(@PathVariable String id,@Valid @RequestBody CarRequestUpdateDTO carRequestDTO) {
+        var carUpdated = carService.updateCar(id, carRequestDTO);
+
+        return ResponseEntity.ok(carUpdated);
     }
 }

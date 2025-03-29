@@ -3,6 +3,7 @@ package com.rentalcars.cars.ms_car.services;
 import com.rentalcars.cars.ms_car.enums.BrandEnum;
 import com.rentalcars.cars.ms_car.exceptions.customException.CarNotFoundException;
 import com.rentalcars.cars.ms_car.model.dto.in.CarRequestDTO;
+import com.rentalcars.cars.ms_car.model.dto.in.CarRequestUpdateDTO;
 import com.rentalcars.cars.ms_car.model.dto.out.CarResponseDTO;
 import com.rentalcars.cars.ms_car.model.entities.Car;
 import com.rentalcars.cars.ms_car.repositories.CarRepository;
@@ -30,6 +31,7 @@ public class CarService {
     }
 
     public CarResponseDTO getACarById(String id) {
+        //refatorar com metodo de busca por ID, depois usar map com method reference
         return carRepository.findById(UUID.fromString(id)).map(CarResponseDTO::createResponseDTO)
                 .orElseThrow(CarNotFoundException::new);
     }
@@ -45,6 +47,23 @@ public class CarService {
         var car = createEntity(carRequestDTO);
 
         return carSaved(car);
+    }
+
+    public CarResponseDTO updateCar(String id, CarRequestUpdateDTO carRequestDTO) {
+        var carInDB = getACar(id);
+
+        return updateCarEntity(carInDB, carRequestDTO);
+    }
+
+    private CarResponseDTO updateCarEntity(Car carInDB, CarRequestUpdateDTO requestUpdateDTO) {
+        var car = Car.updateEntityByRequestUpdate(carInDB, requestUpdateDTO);
+        var carSaved = carRepository.save(car);
+
+        return CarResponseDTO.createResponseDTO(carSaved);
+    }
+
+    private Car getACar(String id) {
+        return carRepository.findById(UUID.fromString(id)).orElseThrow(CarNotFoundException::new);
     }
 
     private Car createEntity(CarRequestDTO requestDTO) {

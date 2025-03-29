@@ -2,6 +2,7 @@ package com.rentalcars.cars.ms_car.interfaces;
 
 import com.rentalcars.cars.ms_car.enums.BrandEnum;
 import com.rentalcars.cars.ms_car.model.dto.in.CarRequestDTO;
+import com.rentalcars.cars.ms_car.model.dto.in.CarRequestUpdateDTO;
 import com.rentalcars.cars.ms_car.model.dto.out.CarResponseDTO;
 import org.springframework.http.ResponseEntity;
 
@@ -22,4 +23,6 @@ public interface CarController {
     );
 
     ResponseEntity<CarResponseDTO> create(CarRequestDTO carRequestDTO);
+
+    ResponseEntity<CarResponseDTO> update(String id, CarRequestUpdateDTO carRequestDTO);
 }
