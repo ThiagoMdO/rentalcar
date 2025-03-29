@@ -25,4 +25,6 @@ public interface CarController {
     ResponseEntity<CarResponseDTO> create(CarRequestDTO carRequestDTO);
 
     ResponseEntity<CarResponseDTO> update(String id, CarRequestUpdateDTO carRequestDTO);
+
+    ResponseEntity<Void> delete(String id);
 }

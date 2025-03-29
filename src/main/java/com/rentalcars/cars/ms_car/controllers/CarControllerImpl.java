@@ -65,4 +65,12 @@ public class CarControllerImpl implements CarController {
 
         return ResponseEntity.ok(carUpdated);
     }
+
+    @Override
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        carService.deleteACar(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

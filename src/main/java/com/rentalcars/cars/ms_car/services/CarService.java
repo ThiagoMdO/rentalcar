@@ -55,6 +55,14 @@ public class CarService {
         return updateCarEntity(carInDB, carRequestDTO);
     }
 
+    public void deleteACar(String id) {
+        deleteThis(getACar(id));
+    }
+
+    private void deleteThis(Car car) {
+        carRepository.delete(car);
+    }
+
     private CarResponseDTO updateCarEntity(Car carInDB, CarRequestUpdateDTO requestUpdateDTO) {
         var car = Car.updateEntityByRequestUpdate(carInDB, requestUpdateDTO);
         var carSaved = carRepository.save(car);
