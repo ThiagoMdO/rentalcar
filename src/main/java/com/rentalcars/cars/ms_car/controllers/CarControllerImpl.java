@@ -2,9 +2,12 @@ package com.rentalcars.cars.ms_car.controllers;
 
 import com.rentalcars.cars.ms_car.enums.BrandEnum;
 import com.rentalcars.cars.ms_car.interfaces.CarController;
+import com.rentalcars.cars.ms_car.model.dto.in.CarRequestDTO;
 import com.rentalcars.cars.ms_car.model.dto.out.CarResponseDTO;
 import com.rentalcars.cars.ms_car.services.CarService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,5 +47,13 @@ public class CarControllerImpl implements CarController {
         List<CarResponseDTO> cars = carService.search(model, color, brandEnum, startYear, endYear);
 
         return ResponseEntity.ok(cars);
+    }
+
+    @Override
+    @PostMapping
+    public ResponseEntity<CarResponseDTO> create(@Valid @RequestBody CarRequestDTO carRequestDTO) {
+        var carCreated = carService.registerCar(carRequestDTO);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(carCreated);
     }
 }

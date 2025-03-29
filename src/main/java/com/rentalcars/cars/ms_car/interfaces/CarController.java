@@ -1,9 +1,9 @@
 package com.rentalcars.cars.ms_car.interfaces;
 
 import com.rentalcars.cars.ms_car.enums.BrandEnum;
+import com.rentalcars.cars.ms_car.model.dto.in.CarRequestDTO;
 import com.rentalcars.cars.ms_car.model.dto.out.CarResponseDTO;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -20,4 +20,6 @@ public interface CarController {
             Integer startYear,
             Integer endYear
     );
+
+    ResponseEntity<CarResponseDTO> create(CarRequestDTO carRequestDTO);
 }
