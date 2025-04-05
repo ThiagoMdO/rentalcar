@@ -7,6 +7,7 @@ import com.rentalcars.cars.ms_car.model.entities.Car;
 import java.time.LocalDate;
 
 public record CarResponseDTO (
+    String id,
     String model,
     BrandEnum brandEnum,
     String color,
@@ -15,6 +16,7 @@ public record CarResponseDTO (
 ){
     public static CarResponseDTO createResponseDTO(Car car) {
         return new CarResponseDTO(
+                car.getId().toString(),
                 car.getModel(),
                 car.getBrandEnum(),
                 car.getColor(),
